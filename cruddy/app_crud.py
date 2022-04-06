@@ -46,7 +46,13 @@ def crud_login():
     # if not logged in, show the login page
     return render_template("login.html")
 
-
+# hack 2 Add logout to CRUD screen. Display logged in User on top of CRUD Page 
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return render_template("index.html")
+  
 @app_crud.route('/authorize/', methods=["GET", "POST"])
 def crud_authorize():
     # check form inputs and creates user
